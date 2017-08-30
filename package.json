@@ -1,0 +1,30 @@
+{
+  "name": "libxmljs-lazy-builder",
+  "version": "1.0.0",
+  "description": "Builds XML documents in a lazy way.",
+  "main": "libxmljs-lazy-builder.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/torus/node-libxmljs-lazy-builder.git"
+  },
+  "keywords": [
+    "libxmljs",
+    "xml",
+    "libxml"
+  ],
+  "author": "Toru Hisai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/torus/node-libxmljs-lazy-builder/issues"
+  },
+  "homepage": "https://github.com/torus/node-libxmljs-lazy-builder#readme",
+  "dependencies": {
+    "libxmljs": "^0.18.7"
+  },
+  "devDependencies": {
+    "mocha": "^3.5.0"
+  }
+}
