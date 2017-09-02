@@ -6,8 +6,8 @@ Builds XML documents in a _lazy_ way.
 
 ```javascript
 var doc = new libxml.Document()
-var elem = E("root", {}, E("kit"), "mars", E("kat"))(doc)
-elem.toString().should.be.equal('<root><kit/>mars<kat/></root>')
+var elem = E("root", {}, E("kit", {color: "brown"}), "mars", E("kat"))(doc)
+elem.toString().should.be.equal('<root><kit color="brown"/>mars<kat/></root>')
 ```
 
 ## DEPENDS ON

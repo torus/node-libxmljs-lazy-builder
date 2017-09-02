@@ -72,4 +72,12 @@ describe('function returned from libxmljs-lazy-builder', function() {
       elem.toString().should.be.equal('<root><kit/>mars<kat/></root>')
     })
   })
+
+  describe('with everything', function() {
+    it('should work as an example', function() {
+      var doc = new libxml.Document()
+      var elem = E("root", {}, E("kit", {color: "brown"}), "mars", E("kat"))(doc)
+      elem.toString().should.be.equal('<root><kit color="brown"/>mars<kat/></root>')
+    })
+  })
 })
