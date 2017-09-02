@@ -1,6 +1,6 @@
 {
   "name": "libxmljs-lazy-builder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Builds XML documents in a lazy way.",
   "main": "libxmljs-lazy-builder.js",
   "scripts": {
