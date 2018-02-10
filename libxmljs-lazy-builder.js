@@ -17,6 +17,8 @@ module.exports = function(name, attrs) {
 
     for (var i = 0; i < children.length; i ++) {
       var c = children[i];
+      if (c == null)
+        continue;
       var f = function (c) {
         if (typeof (c) == "function") {
           f (c (doc));
@@ -27,7 +29,9 @@ module.exports = function(name, attrs) {
             f (c[i]);
           }
         } else {
-          var cont = Text(doc, c);
+          var dummy = new libxml.Element(doc, 'DUMMY', c)
+          var cont = dummy.child(0)
+//          var cont = Text(doc, c);
           elem.addChild (cont);
         }
       }

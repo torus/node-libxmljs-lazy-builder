@@ -4,6 +4,39 @@ var Element = require('libxmljs/lib/element')
 
 var E = require('.')
 
+describe('libxmljs', function() {
+  it('should build a document with a node with empty content', function() {
+    var doc = new libxml.Document()
+    doc.node('root').node('child', '')
+    var expected = ['<?xml version="1.0" encoding="UTF-8"?>',
+                    '<root>',
+                    '  <child/>',
+                    '</root>', ''].join('\n')
+
+    doc.toString().should.be.equal(expected)
+  })
+
+  it('should build a document with a node with content containing special character', function() {
+    var doc = new libxml.Document()
+    doc.node('root').node('child', '<>')
+    var expected = ['<?xml version="1.0" encoding="UTF-8"?>',
+                    '<root>',
+                    '  <child>&lt;&gt;</child>',
+                    '</root>', ''].join('\n')
+
+    doc.toString().should.be.equal(expected)
+  })
+
+  it('text nodes', function() {
+    var doc = new libxml.Document()
+    doc.node('root', 'content <>')
+    var text = doc.root().child(0)
+    var elem = new libxml.Element(doc, 'foo')
+    elem.addChild(text)
+    elem.toString().should.be.equal('<foo>content &lt;&gt;</foo>')
+  })
+})
+
 describe('libxmljs-lazy-builder', function() {
   it('should return a function', function() {
     E("root").should.be.a.Function()
@@ -80,4 +113,21 @@ describe('function returned from libxmljs-lazy-builder', function() {
       elem.toString().should.be.equal('<root><kit color="brown"/>mars<kat/></root>')
     })
   })
+
+  describe('with undefined', function() {
+    it('should take a document and return an Element with no children', function() {
+      var doc = new libxml.Document()
+      var elem = E("root", {}, undefined)(doc)
+      elem.toString().should.be.equal('<root/>')
+    })
+  })
+
+  describe('with text containing special characters', function() {
+    it('should take a document and return an Element with text', function() {
+      var doc = new libxml.Document()
+      var elem = E("root", {}, "a<b>c")(doc)
+      elem.toString().should.be.equal('<root>a&lt;b&gt;c</root>')
+    })
+  })
+
 })
