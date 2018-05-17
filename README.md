@@ -6,9 +6,8 @@ Builds XML documents in a _lazy_ way.
 
 ```javascript
 const E = require('libxmljs-lazy-builder')
-const libxml = require('libxmljs')
 
-const doc = new libxml.Document()
+const doc = new E.libxml.Document()
 const elem = E("root", {},
              E("kit", {color: "brown"}),
              "mars",
@@ -37,9 +36,13 @@ A child can be a string or an another E() element. You can specify zero or more 
 Please note that you need to _call_ the returned value from E() with a Document object to get an actual Element object. So, the whole structure should be something like:
 
 ```javascript
-const doc = new libxml.Document()
+const doc = new E.libxml.Document()
 const elem = E("x", {}, E("y", {}, ...), ...)(doc)
 ```
+
+#### E.libxml
+
+The libxml module used internally in E. Use this to create a Document object.
 
 ### Examples
 
