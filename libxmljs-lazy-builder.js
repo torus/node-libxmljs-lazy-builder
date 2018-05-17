@@ -40,3 +40,5 @@ module.exports = function(name, attrs) {
     return elem;
   }
 }
+
+module.exports.libxml = libxml
